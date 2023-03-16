@@ -18,7 +18,7 @@ Before running the project, you'll need to set up the following environment vari
 - `AWS_DEFAULT_REGION`: The AWS region where your resources are located.
 - `MODEL_REGISTRY_TABLE_NAME`: The name of the DynamoDB table to be used for storing model metadata.
 
-##Usage
+## Usage
 ### Typer CLI
 The project includes a command-line interface (CLI) that can be used to interact with the model registry. To see the available commands, run:
 
