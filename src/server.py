@@ -1,16 +1,20 @@
 from typing import Dict, Union
 from datetime import datetime
 
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, File, HTTPException, Depends, UploadFile
+from fastapi.responses import StreamingResponse
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from pydantic import BaseModel
-import uvicorn
+import uvicorn 
 
-from operations.models import create_model, read_model, update_model, delete_model
+from src.operations import create_model, read_model, update_model, delete_model
+
 
 app = FastAPI()
-
 security = HTTPBasic()
+
+s3 = boto3.resource('s3')
+bucket_name = 'my-model-bucket'
 
 
 class ModelCreateRequest(BaseModel):
@@ -179,5 +183,4 @@ async def retrieve_artefact(model_id: str):
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
-
 

@@ -2,7 +2,6 @@ import datetime
 
 from pynamodb.models import Model
 from pynamodb.attributes import UnicodeAttribute, NumberAttribute, UTCDateTimeAttribute, JSONAttribute
-from pynamodb.exceptions import DoesNotExist
 
 
 class ModelTable(Model):

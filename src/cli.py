@@ -1,15 +1,15 @@
-import typer
 from typing import Optional
-from model_table_operations import create_model, delete_model_by_id, get_model_by_id, list_models, update_model_by_id
-from pydantic import BaseModel
 
+import typer
+import boto3
 
-class Model(BaseModel):
-    id: str
-    name: str
-    description: Optional[str] = None
-    tags: Optional[list] = None
+from src.operations import create_model, delete_model_by_id, get_model_by_id, list_models, update_model_by_id
+from src.models import ModelTable
 
+app = typer.Typer()
+
+s3 = boto3.resource('s3')
+bucket_name = 'my-model-bucket'
 
 app = typer.Typer()
 
@@ -85,13 +85,6 @@ def list():
     models = list_models()
     typer.echo('\n'.join([model.json(indent=2) for model in models]))
 
-import typer
-import boto3
-
-app = typer.Typer()
-
-s3 = boto3.resource('s3')
-bucket_name = 'my-model-bucket'
 
 @app.command()
 def store_artefact(model_id: str, artefact: str):

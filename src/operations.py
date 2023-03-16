@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from models.models import ModelTable
+from src.models import ModelTable
 from typing import Dict, Optional, Union
 from datetime import datetime
 
