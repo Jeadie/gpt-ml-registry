@@ -3,8 +3,8 @@ from typing import Optional
 import typer
 import boto3
 
-from src.operations import create_model, delete_model_by_id, get_model_by_id, list_models, update_model_by_id
-from src.models import ModelTable
+from operations import create_model, delete_model, read_model, update_model
+from models import ModelTable
 
 app = typer.Typer()
 
@@ -25,7 +25,7 @@ def create(id: str, name: str, description: Optional[str] = None, tags: Optional
         description (str, optional): The description of the model to create.
         tags (str, optional): The tags of the model to create.
     """
-    model = Model(id=id, name=name, description=description, tags=tags)
+    model = ModelTable(id=id, name=name, description=description, tags=tags)
     create_model(model)
 
 
@@ -37,7 +37,7 @@ def get(id: str):
     Args:
         id (str): The ID of the model to retrieve.
     """
-    model = get_model_by_id(id)
+    model = read_model(id)
     if model is None:
         typer.echo(f"Model with ID '{id}' not found.")
     else:
@@ -63,7 +63,7 @@ def update(id: str, name: Optional[str] = None, description: Optional[str] = Non
     if tags is not None:
         update_fields['tags'] = tags
 
-    update_model_by_id(id, update_fields)
+    update_model(id, update_fields)
 
 
 @app.command()
@@ -74,7 +74,7 @@ def delete(id: str):
     Args:
         id (str): The ID of the model to delete.
     """
-    delete_model_by_id(id)
+    delete_model(id)
 
 
 @app.command()
@@ -82,7 +82,7 @@ def list():
     """
     List all models in the ModelTable.
     """
-    models = list_models()
+    models = [] #list_models()
     typer.echo('\n'.join([model.json(indent=2) for model in models]))
 
 

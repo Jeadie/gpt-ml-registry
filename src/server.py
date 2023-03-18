@@ -1,13 +1,14 @@
 from typing import Dict, Union
 from datetime import datetime
 
+import boto3
 from fastapi import FastAPI, File, HTTPException, Depends, UploadFile
 from fastapi.responses import StreamingResponse
 from fastapi.security import HTTPBasic, HTTPBasicCredentials
 from pydantic import BaseModel
 import uvicorn 
 
-from src.operations import create_model, read_model, update_model, delete_model
+from operations import create_model, read_model, update_model, delete_model
 
 
 app = FastAPI()

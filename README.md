@@ -1,6 +1,6 @@
 # Model Registry
 
-This is a Python project that provides a model registry for storing and managing models and their associated artefacts. The project uses DynamoDB to store metadata about the models, data, and artefacts, and Amazon S3 to store the artefact files.
+This is a Python project that provides a model registry for storing and managing models and their associated artefacts. The project uses DynamoDB to store metadata about the models and Amazon S3 to store the artefact files.
 
 ## Installation
 
@@ -23,7 +23,7 @@ Before running the project, you'll need to set up the following environment vari
 The project includes a command-line interface (CLI) that can be used to interact with the model registry. To see the available commands, run:
 
 ```bash
-python cli.py --help
+python src/cli.py --help
 ```
 
 ### FastAPI Server
@@ -48,10 +48,10 @@ Here's an example of how to use the CLI to create a new model and upload an arte
 
 ```bash
 # Create a new model
-python cli.py create_model --model_id 123 --name "My Model" --description "This is my model"
+python src/cli.py create_model --model_id 123 --name "My Model" --description "This is my model"
 
 # Upload an artefact
-python cli.py store_artefact --model_id 123 --artefact my_model.pkl
+python src/cli.py store_artefact --model_id 123 --artefact my_model.pkl
 ```
 
 Here's an example of how to use the FastAPI API to retrieve metadata about a model:

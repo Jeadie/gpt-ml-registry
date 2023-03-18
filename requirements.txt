@@ -1,0 +1,7 @@
+boto3==1.26.94
+fastapi==0.94.1
+pydantic==1.10.6
+pynamodb==5.4.1
+python-multipart==0.0.6
+typer==0.7.0
+uvicorn==0.21.1
